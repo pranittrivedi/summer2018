@@ -26,6 +26,20 @@ public class DriveTrain extends Subsystem {
     private double gyroOffset, encOffset;
     private PID drivePID, gyroPID;
 
+    public DriveTrain(Config config){
+        mLeft1 = config.getDriveVictorLeft1();
+        mLeft2 = config.getDriveVictorLeft2();
+        mRight1 = config.getDriveVictorRight1();
+        mRight2 = config.getDriveVictorRight2();
+
+        mEncoderLeft = config.getDriveEncoderLeft();
+        mEncoderRight = config.getDriveEncoderRight();
+        mGyro = config.getDriveGyro();
+
+        drivePID = new PID(config.getDriveP(), config.getDriveI(), config.getDriveD());
+        gyroPID = new PID(config.getGyroP(), config.getGyroI(), config.getGyroD());
+    }
+
     public void initDefaultCommand() {
         // TODO: Set the default command, if any, for a subsystem here. Example:
         //    setDefaultCommand(new MySpecialCommand());
@@ -55,8 +69,8 @@ public class DriveTrain extends Subsystem {
         mEncoderRight.reset();
     }
 
-    public void zeroGyro({
-        gyroOffset=mGyro.getHeading();
+    public void zeroGyro(){
+        gyroOffset = mGyro.getHeading();
     }
 
     public void shift(){
@@ -64,29 +78,15 @@ public class DriveTrain extends Subsystem {
     }
 
     public double getHeading(){
-        return mGyro.getHeading()-gyroOffset;
+        return mGyro.getHeading() - gyroOffset;
     }
 
     public double getDistance(){
-        return (mEncoderLeft.getDistance()+mEncoderRight.getDistance())/2;
+        return (mEncoderLeft.getDistance() + mEncoderRight.getDistance())/2;
     }
 
     public double getSpeed(){
         //TODO
-    }
-
-    public DriveTrain(Config config){
-        mLeft1 = config.getDriveVictorLeft1();
-        mLeft2 = config.getDriveVictorLeft2();
-        mRight1 = config.getDriveVictorRight1();
-        mRight2 = config.getDriveVictorRight2();
-
-        mEncoderLeft = config.getDriveEncoderLeft();
-        mEncoderRight = config.getDriveEncoderRight();
-        mGyro = config.getDriveGyro();
-
-        drivePID = new PID(config.getDriveP(), config.getDriveI(), config.getDriveD());
-        gyroPID = new PID(config.getGyroP(), config.getGyroI(), config.getGyroD());
     }
 }
 
