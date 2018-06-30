@@ -7,8 +7,6 @@ public class Robot extends IterativeRobot {
 
     private static DriveTrain mDriveTrain;
 
-
-
     @Override
     public void robotInit() { }
 
@@ -40,5 +38,4 @@ public class Robot extends IterativeRobot {
     public static DriveTrain getmDriveTrain() {
         return mDriveTrain;
     }
-}
 }
