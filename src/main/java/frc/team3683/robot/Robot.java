@@ -1,9 +1,10 @@
 package frc.team3683.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team3683.robot.subsystems.DriveTrain;
 
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
 
     private static DriveTrain mDriveTrain;
 
@@ -24,16 +25,24 @@ public class Robot extends IterativeRobot {
 
 
     @Override
-    public void disabledPeriodic() { }
+    public void disabledPeriodic() {
+        Scheduler.getInstance().run();
+    }
     
     @Override
-    public void autonomousPeriodic() { }
+    public void autonomousPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
     @Override
-    public void teleopPeriodic() { }
+    public void teleopPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
     @Override
-    public void testPeriodic() { }
+    public void testPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
     public static DriveTrain getmDriveTrain() {
         return mDriveTrain;
